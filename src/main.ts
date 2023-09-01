@@ -90,7 +90,7 @@ async function run(): Promise<void> {
       transient_environment: transientEnvironment === 'true',
       production_environment: productionEnvironment,
       auto_merge: autoMerge === 'true',
-      payload: payload ? tryParseJSON(payload) : undefined,
+      payload: payload !== '' ? payload : undefined,
       description
     })
 
@@ -117,20 +117,6 @@ async function run(): Promise<void> {
     core.error(error)
     core.setFailed(`Error creating GitHub deployment: ${error.message}`)
   }
-}
-
-/**
- * helper function to try and parse a provided input string as a JSON object.
- * If it cannot be parsed the input string is returned.
- */
-function tryParseJSON(str: string): any {
-  let res: any = str
-  try {
-    res = JSON.stringify(str)
-  } catch (e) {
-    core.info(`couldn't parse string as JSON: ${str}`)
-  }
-  return res
 }
 
 run()
