@@ -131,7 +131,7 @@ function run() {
 function tryParseJSON(str) {
     let res = str;
     try {
-        res = JSON.parse(str);
+        res = JSON.stringify(str);
     }
     catch (e) {
         core.info(`couldn't parse string as JSON: ${str}`);
