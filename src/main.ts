@@ -126,7 +126,7 @@ async function run(): Promise<void> {
 function tryParseJSON(str: string): any {
   let res: any = str
   try {
-    res = JSON.parse(str)
+    res = JSON.stringify(str)
   } catch (e) {
     core.info(`couldn't parse string as JSON: ${str}`)
   }
